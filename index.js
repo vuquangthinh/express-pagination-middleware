@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-export default (defaultLimit, defaultFilters = [], defaultSorts = []) => {
+module.exports = (defaultLimit, defaultFilters = [], defaultSorts = []) => {
   return (req, res, next) => {
     // console.info(defaultLimit)
     let limit = Math.max(1, _.get(req, 'query.page_size', defaultLimit));
@@ -19,12 +19,8 @@ export default (defaultLimit, defaultFilters = [], defaultSorts = []) => {
     let _filters = req.query.filters || {};
     let _sorts = req.query.sorts || {};
 
-    const filters = _.pickBy(typeof _filters === 'object' ? _filters : {}, (val, key) =>
-      defaultFilters.includes(key)
-    );
-    const sorts = _.pickBy(typeof _sorts === 'object' ? _sorts : {}, (val, key) =>
-      defaultSorts.includes(key)
-    );
+    const filters = _.pickBy(typeof _filters === 'object' ? _filters : {}, (val, key) => defaultFilters.includes(key));
+    const sorts = _.pickBy(typeof _sorts === 'object' ? _sorts : {}, (val, key) => defaultSorts.includes(key));
 
     // normalize sorts
     req.pagination = {
