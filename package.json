@@ -1,9 +1,11 @@
 {
   "name": "express-pagination-middleware",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple Pagination",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
